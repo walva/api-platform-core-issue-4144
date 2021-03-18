@@ -19,7 +19,7 @@ php -S 127.0.0.1:8000 -t public
 curl -X PATCH "http://127.0.0.1:34623/api/books/2" -H  "accept: application/ld+json" -H  "Content-Type: application/merge-patch+json" -d "{\"rankings\":{\"trendy\":null}}"
 ```
 
-* navigate in the API: http://127.0.0.1:34623/api/books.json?order[rankings.trendy]=DESC
+* navigate in the API: http://127.0.0.1:8000/api/books.json?order[rankings.trendy]=DESC
 
 * 🆗 game#2 should appear first thanks to
 
