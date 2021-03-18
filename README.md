@@ -1,5 +1,7 @@
 # api-platform-core-issue-4144
 
+[Issue #4144 : Comparing with Null Values doesn't work with embeddables](https://github.com/api-platform/core/issues/4144)
+
 ## How to run
 
 * setup the project
