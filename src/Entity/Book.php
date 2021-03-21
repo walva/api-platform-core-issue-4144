@@ -9,6 +9,7 @@ use App\Entity\Ranking;
 use Symfony\Component\Serializer\Annotation\Groups;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\RangeFilter;
 
 /**
  * @ORM\Entity(repositoryClass=BookRepository::class)
@@ -22,11 +23,15 @@ use ApiPlatform\Core\Annotation\ApiFilter;
         'groups' => ['default'],
     ],
 )]
+// #[ApiFilter(OrderFilter::class, properties: [
+//     'rankings.trendy',
+// ])]
 #[ApiFilter(OrderFilter::class, properties: [
     'rankings.trendy' => [
-        'nulls_comparison' => OrderFilter::NULLS_LARGEST,
+        'nulls_comparison' => OrderFilter::NULLS_SMALLEST,
     ],
 ])]
+#[ApiFilter(RangeFilter::class, properties: ['dummyInteger'])]
 class Book
 {
     /**
@@ -48,6 +53,12 @@ class Book
      */
     #[Groups(['default'])]
     private $rankings;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    #[Groups(['default'])]
+    private $dummyInteger;
 
     public function __construct(){
         $this->rankings = new Ranking();
@@ -78,6 +89,18 @@ class Book
     public function setRankings($rankings): self
     {
         $this->rankings = $rankings;
+
+        return $this;
+    }
+
+    public function getDummyInteger(): ?int
+    {
+        return $this->dummyInteger;
+    }
+
+    public function setDummyInteger(?int $dummyInteger): self
+    {
+        $this->dummyInteger = $dummyInteger;
 
         return $this;
     }

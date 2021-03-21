@@ -1,5 +1,6 @@
 App\Entity\Book:
     book_{1..10}:
         name: <name()>
+        dummyInteger: <numberBetween(0, 100)>
         rankings.popular: <numberBetween(0, 100)>
         rankings.trendy: <numberBetween(0, 100)>
