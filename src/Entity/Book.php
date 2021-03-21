@@ -27,9 +27,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\RangeFilter;
 //     'rankings.trendy',
 // ])]
 #[ApiFilter(OrderFilter::class, properties: [
-    'rankings.trendy' => [
-        'nulls_comparison' => OrderFilter::NULLS_SMALLEST,
-    ],
+    'rankings.trendy',
 ])]
 #[ApiFilter(RangeFilter::class, properties: ['dummyInteger'])]
 class Book
